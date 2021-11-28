@@ -35,21 +35,30 @@ This project used data from the Family Life, Activity, Sun, Health and Eating (F
 
 **1. How do patterns of physical activity for adolescents (when they exercise) vary by their BMI and demographics(school type, sex and age)?**
 
-**2. How does the total amount of exercise relate to BMI and demographics?**
+**2. How does the total amount of exercise (or average exercise) relate to BMI and demographics?**
 
 # Method
 
 ## Joining Data Sets
+Our data was split into 2 files for size/downloadable reasons so we
+joined it to make one usable data file.  
+We chose full join because we wanted all of the variables to appropriately merge the data sets.
 
 ## Cleaning data (characterize... 
+We then wanted to characterize only select variables, hence the use of the select--> characterize functions. We could not find a way to characterize the data set as a whole without turning some variables' values to NA, so we selected certain variables, characterized them, then rejoined the data sets with the newly characterized data.
+Our analysis focuses on adolescents so we filtered out participants age 13-18. 
 
-## Calculating BMI - group_by
-## Calculating Mean Physical Activity - summarize
+## Calculating BMI - mutate
+## Calculating Mean Physical Activity - summarize and group_by
+ The {group_by} function allowed us to group our data by school type and sex to appropriately assess for associations between those demographic variables and average total weekly physical activity.
+ 
 ## Pivot_Longer for organzing when physical activity occurs
+The initial data set divided when physical activity was completed by during the week in school (XTPREDWEEKS), during the week out of school (XTPREDWEEKOFS), and on the weekend(XTPREDWEEKW). Using {pivot_longer}, we combined the variables of when/where the physical activity was completed to better visualize across the pattern of when/where and any associations with demographic variables. 
 
 # Results
 
 ## Summary Table
+have code for the summary table and can turn it into a plot like bar/col or error bars?
 
 ## Figure 1
 ## Figure 2
