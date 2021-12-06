@@ -7,11 +7,11 @@ title: "Patterns of Adolescent Physical Activity"
 ---
 Liz: 
 - Write 3rd paragraph in intro
-- Write out cleaning data & Pivots section in methods
+- Methods Section (minus esmes part)
 - Start results section with in-text code (N = , % boys/girls,  avg age, avg weekly MVPA) to describe summary table, and insert summary table.
 - Data analysis section (short paragraph)
 Esme:
-- Calculating BMI in methods
+- Data analysis portion
 - Inserting figures/code chunks where needed
 - Discussion Section
 Zach:
