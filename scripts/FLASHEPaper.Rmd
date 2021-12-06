@@ -9,6 +9,7 @@ output:
         toc_depth: 3
         highlight: pygments
         code_folding: hide
+        bibliography: flashe.bib
   
 ---
 
@@ -17,19 +18,27 @@ knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE,
                       warning = FALSE,
                       error = FALSE,
-                      fig.width = 9, 
-                      fig.height = 9)
+                      fig.width = 8.5, 
+                      fig.height = 8.5)
 
 #load packages
+```
+
+This code chunk centers all level 1 headers
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+}
+
 ```
 
 # Abstract
 
 # Introduction
+  It is well known that regular physical activity (PA) is associated with myriad physical and mental health benefits. These benefits may be proximal to the performance of PA, such as reduced anxiety-like feelings, lower blood pressure, and enhanced cognitive function, or they may be more distal, such as increased strength and cardio-respiratory fitness, decreased depression-like symptoms, and long-term reduction of blood pressure _(Piercy KL, Troiano RP, Ballard RM, et al. The Physical Activity Guidelines for Americans. JAMA. 2018;320(19):2020–2028. doi:10.1001/jama.2018.14854)_. Regular PA is especially important for school-aged children (6-17 years old); PA has been shown to foster normal growth and development, improve mood and sleep quality, and greatly reduce the risk for developing chronic disease(s) as an adult _(Piercy KL, Troiano RP, Ballard RM, et al. The Physical Activity Guidelines for Americans. JAMA. 2018;320(19):2020–2028. doi:10.1001/jama.2018.14854)._ Aside from these physiological benefits, physically active students tend to have better educational outcomes (e.g., better grades, enhanced cognitive performance, and decreased behavioral problems) when compared to their less-active peers _(Centers for Disease Control and Prevention. The Association Between School-Based Physical Activity, Including Physical Education, and Academic Performance. Atlanta, GA; Centers for Disease Control and Prevention, US Department of Health and Human Services; 2010.)._
+  As outlined by the U.S. Department of Health and Human Services 2nd edition of the "Physical Activity Guidelines for Americans" (2018), the recommended daily dose of moderate- to vigorous-intensity physical activity (MVPA) for school-aged youth in the United States (US) is 60 minutes _(CITE https://health.gov/our-work/nutrition-physical-activity/physical-activity-guidelines/current-guidelines)_. Despite these recommendations and knowledge of benefits of meeting them, less than a quarter (24%) of school-aged children in the US achieve the recommended 60 minutes of MVPA a day _(The Child & Adolescent Health Measurement Initiative (CAHMI). 2016 National Survey of Childrens Health. Data Resource Center for Child and Adolescent Health;2016)._ 
+  NEED ANOTHER PARAGRAPH THAT TOUCHES ON THE SPECIFICS IN THE LITERATURE ASSOCIATED WITH OUR RESEARCH QUESTIONS, TO LEAD INTO STATING OUR RQs.
 
-(define significance of our topic) Adolescent physical activity is important to ***
-This project used data from the Family Life, Activity, Sun, Health and Eating (FLASHE) study to examine patterns of adolescent physical activity, including when they exercise, how much they exercise, and to explore the association between adolescent BMI, sex, and school type with their exercise patterns. The FLASHE study was conducted by the National Cancer Institute in 2014. Through a cross-sectional, internet-based design, it collected responses from parents and teens to look at psychosocial, generational, and environmental correlates of cancer-related behaviors (CITE from https://cancercontrol.cancer.gov/brp/hbrb/flashe-study)  
-* i want to try Havi's 'share' for how to include a website image in the paper and bring in the FLASHE Conceptual model here. 
 
 ## Research Questions (to be changed based on figures. included as placeholders)
 
@@ -37,27 +46,41 @@ This project used data from the Family Life, Activity, Sun, Health and Eating (F
 
 **2. How does the total amount of exercise (or average exercise) relate to BMI and demographics?**
 
-# Method 
-#can insert inline code into each section below
+## Hypotheses
 
-## Joining Data Sets
-Our data was split into 2 files for size/downloadable reasons so we
-joined it to make one usable data file.  
-We chose full join because we wanted all of the variables to appropriately merge the data sets.
+**1. **
 
-## Cleaning data - {select},  {characterize}, and {filter} 
+**2. **
+
+# Methods
+## Data Source
+This project uses data from the Family Life, Activity, Sun, Health and Eating (FLASHE) study. FLASHE data was collected cross-sectionally using an internet-based survey _(CITE from https://cancercontrol.cancer.gov/brp/hbrb/flashe-study)._ Data collection occurred between April and October of 2014 and was last updated in 2017. The FLASHE study asked questions enabling researchers to examine correlates of cancer-related behaviors using behavioral measures of diet and physical activity, and other behaviors associated with cancer risk, such as sun-safety, sleep, and tobacco consumption. Sampling for the FLASHE study was drawn from a Consumer Opinion Panel and sampling design was intended to collect a representative sample reflective of demographics for the United States general population (e.g., sex, education, income, age, region, household size). The conceptual model for the FLASHE study cane be seen in Figure 1. It is important to note that data collection took place by sampling dyads of parent/caregiver-adolescent(ages 12-17) pairs. The FLASHE Enrollment and Design structure can be seen in Figure 2.
+
+### Figure 1: FLASHE Conceptual Model
+![FLASHE Conceptual Model](/Users/zsfarley/Desktop/images/FLASHE_Concept.jpg)
+
+### Figure 2: FLASHE Enrollment and Design
+![FLASHE Enrollment and Design](/Users/zsfarley/Desktop/images/FLASHE_Enrollment.jpg)
+
+## Sample Selection
+In our study, we aim to examine patterns of adolescent (PA), including when and how much PA they perform, and to explore the association between weekly minutes of (MVPA) adolescent BMI, sex, and school type with their exercise patterns. For the purpose of this study, our final sample will be composed of teenagers (13-17 years old) who gave responses for all physical activity and demographic variables. This process and final sample size is explained in the following sections.
+
+
+### Joining Data Sets
+  Our data was split into two files for size/downloadable reasons: adolescent demographic and adolescent physical activity surveys. Each of these files contained a column containing the variable "PID", or participant identification. The PIDs are unique to each individual who completed the surveys. We used this variable to join these two data sets. This was done using the full join function from the dplyr package. _(CITE DPLYR PACKAGE)_ This was used so we could retain all variables contained within both data sets for each specific participant, identified by their unique PID. After fully joining these two data sets, we then needed to tidy up data using functions from the tidyverse and dplyr packages _(cite tidyverse and dplyr)_.
+
+### Cleaning data - {select},  {characterize}, and {filter} 
 We then wanted to characterize only select variables, hence the use of the {select}--> {characterize} functions. We could not find a way to characterize the data set as a whole without turning some variables' values to NA, so we selected certain variables, characterized them, then rejoined the data sets with the newly characterized data.
 
-Our analysis focuses on adolescents so we {filter}ed out participants age 13-18. 
 
-## Calculating BMI - {mutate}
+### Calculating BMI - {mutate}
 Body Mass Index (BMI) is an effective measure of _____(Esme and Zach this is your wheel house, so leaving this definition and noting importance of BMI to you :) 
 To calculate BMI, we utilized the {mutate} function. 
 
-## Calculating Mean Physical Activity - {summarize} and {group_by}
+### Calculating Mean Physical Activity - {summarize} and {group_by}
  The {group_by} function allowed us to organize our data by school type and sex to appropriately assess for associations between those demographic variables and average total weekly physical activity.
  
-## {pivot_Longer} for organzing when physical activity occurs
+### {pivot_Longer} for organzing when physical activity occurs
 The initial data set divided when physical activity was completed by during the week in school (XTPREDWEEKS), during the week out of school (XTPREDWEEKOFS), and on the weekend(XTPREDWEEKW). Using {pivot_longer}, we combined the variables of when/where the physical activity was completed to better visualize across the pattern of when/where and any associations with demographic variables. 
 
 # Results
@@ -77,25 +100,8 @@ Implications for programs to promote physical activity in or out of school..
 Implications for policy..
 Next steps for research include examining what motivates adolescents to complete physical activity, and how their environment moderates or mediates the amount of physical activity they complete.
 
+\newpage
 # References 
 
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
