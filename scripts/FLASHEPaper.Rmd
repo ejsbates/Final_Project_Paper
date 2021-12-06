@@ -80,30 +80,27 @@ This project uses data from the Family Life, Activity, Sun, Health and Eating (F
 ## Sample Selection
 In our study, we aim to examine patterns of adolescent (PA), including when and how much PA they perform, and to explore the association between weekly minutes of (MVPA) adolescent BMI, sex, and school type with their exercise patterns. For the purpose of this study, our final sample will be composed of teenagers (13-17 years old) who gave responses for all physical activity and demographic variables. This process and final sample size is explained in the following sections.
 
-
-### Joining Data Sets
-  Our data was split into two files for size/downloadable reasons: adolescent demographic and adolescent physical activity surveys. Each of these files contained a column containing the variable "PID", or participant identification. The PIDs are unique to each individual who completed the surveys. We used this variable to join these two data sets. This was done using the full join function from the dplyr package. _(CITE DPLYR PACKAGE)_ This was used so we could retain all variables contained within both data sets for each specific participant, identified by their unique PID. After fully joining these two data sets, we then needed to tidy up data using functions from the tidyverse and dplyr packages _(cite tidyverse and dplyr)_.
- _(Load & Join Data Sets Code CHUNK)_
-
-### Cleaning data - {select},  {characterize}, and {filter} 
-We then wanted to characterize only select variables, hence the use of the {select}--> {characterize} functions. We could not find a way to characterize the data set as a whole without turning some variables' values to NA, so we selected certain variables, characterized them, then rejoined the data sets with the newly characterized data.
-
-_(Cleaning Code Chunks)_
-
+## Data Analysis
 
 ### Calculating BMI - {mutate}
 Body Mass Index (BMI) is an effective measure of _____(Esme and Zach this is your wheel house, so leaving this definition and noting importance of BMI to you :) 
 To calculate BMI, we utilized the {mutate} function. 
 
-_(Add code chunk for this calc)_
+### Joining Data Sets (NOT IN PAPER BUT MOVE TO OTHER RMD FILE)
+  _Our data was split into two files for size/downloadable reasons: adolescent demographic and adolescent physical activity surveys. Each of these files contained a column containing the variable "PID", or participant identification. The PIDs are unique to each individual who completed the surveys. We used this variable to join these two data sets. This was done using the full join function from the dplyr package. (CITE DPLYR PACKAGE) This was used so we could retain all variables contained within both data sets for each specific participant identified by their unique PID. After fully joining these two data sets, we then needed to tidy up data using functions from the tidyverse and dplyr packages (cite tidyverse and dplyr)._
+  
+ _(Load & Join Data Sets Code CHUNK)_
+ 
+### Cleaning data - {select},  {characterize}, and {filter} (NOT IN PAPER BUT MOVE TO OTHER RMD FILE)
+_We then wanted to characterize only select variables, hence the use of the {select}--> {characterize} functions. We could not find a way to characterize the data set as a whole without turning some variables' values to NA, so we selected certain variables, characterized them, then rejoined the data sets with the newly characterized data._
 
-### Calculating Mean Physical Activity - {summarize} and {group_by}
- The {group_by} function allowed us to organize our data by school type and sex to appropriately assess for associations between those demographic variables and average total weekly physical activity.
+_(Cleaning Code Chunks)_
+
+### Calculating Mean Physical Activity - {summarize} and {group_by} 
+_The {group_by} function allowed us to organize our data by school type and sex to appropriately assess for associations between those demographic variables and average total weekly physical activity._
  
 ### {pivot_Longer} for organzing when physical activity occurs
-The initial data set divided when physical activity was completed by during the week in school (XTPREDWEEKS), during the week out of school (XTPREDWEEKOFS), and on the weekend(XTPREDWEEKW). Using {pivot_longer}, we combined the variables of when/where the physical activity was completed to better visualize across the pattern of when/where and any associations with demographic variables. 
-
-### Data Analysis
+_The initial data set divided when physical activity was completed by during the week in school (XTPREDWEEKS), during the week out of school (XTPREDWEEKOFS), and on the weekend(XTPREDWEEKW). Using {pivot_longer}, we combined the variables of when/where the physical activity was completed to better visualize across the pattern of when/where and any associations with demographic variables._
 
 
 # Results
