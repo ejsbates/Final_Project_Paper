@@ -1,27 +1,25 @@
 ---
-title: "Patterns of Physical Activity Among Adolescents"
-author: "Team Bates, Castro, and Farley"
-date: "11/27/2021"
-output: 
-  html_document:
-        toc: true
-        toc_float: true
-        toc_depth: 3
-        highlight: pygments
-        code_folding: hide
-        bibliography: flashe.bib
-  
+author: "Elizabeth Bates, Esmeralda Castro, & Zach Farley"
+date: "12/8/2021"
+output: pdf_document
+bibliography: references.bib
+title: "Patterns of Adolescent Physical Activity"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,
+knitr::opts_chunk$set(echo = FALSE,
                       message = FALSE,
                       warning = FALSE,
                       error = FALSE,
                       fig.width = 8.5, 
                       fig.height = 8.5)
 
-#load packages
+library(here)
+library(rio)
+library(janitor)
+library(gtsummary)
+library(tidyverse)
+library(ggridges)
 ```
 
 This code chunk centers all level 1 headers
@@ -42,9 +40,9 @@ h1 {
 
 ## Research Questions (to be changed based on figures. included as placeholders)
 
-**1. How do patterns of physical activity for adolescents (when they exercise) vary by their BMI and demographics(school type, sex and age)?**
+**1. How do patterns of physical activity for adolescents vary by BMI and demographics (school type, sex and age)?**
 
-**2. How does the total amount of exercise (or average exercise) relate to BMI and demographics?**
+**2. How does the total amount of exercise relate to BMI and demographics?**
 
 ## Hypotheses
 
@@ -84,24 +82,80 @@ To calculate BMI, we utilized the {mutate} function.
 The initial data set divided when physical activity was completed by during the week in school (XTPREDWEEKS), during the week out of school (XTPREDWEEKOFS), and on the weekend(XTPREDWEEKW). Using {pivot_longer}, we combined the variables of when/where the physical activity was completed to better visualize across the pattern of when/where and any associations with demographic variables. 
 
 # Results
-We found that ***
+We found that...
 ## Summary Table
+```{r summary-data}
+data <- import(here("data", "final.csv")) %>% 
+  as_tibble() %>% 
+  clean_names()
+
+# change chr to factors for our demographic vars
+data$tsex <- as.factor(data$tsex) # sex
+data$tethrac_rc_y <- as.factor(data$tethrac_rc_y) # race
+data$tschltype <- as.factor(data$tschltype) # school type
+data$tage_y <- as.factor(data$tage_y) # age
+
+# Create df for table of demographic variables
+table_data <- data %>% 
+  select(c(13:15, 17))
+
+colnames(table_data) <- c("Sex", "School Type",
+                          "Race/Ethnicity", "Age")
+
+table_data %>% 
+  gtsummary::tbl_summary() %>% 
+   as_gt() %>%
+  gt::tab_header(title = "Table 1. Descriptive Characteristics")
+```
+
+\newpage
+# References 
+
 
 have code for the summary table in script and can turn it into a plot like bar/col or error bars
+<!-- Figures to be inserted under text they belong -->
+## MVPA by Demographic Variables
+```{r PA-BMI-race-ethnicity}
+data %>% 
+  ggplot(aes(bmi, total_pa_wk_min)) +
+  geom_point(aes(color = tsex), alpha = 0.5) +
+  geom_smooth(method = lm, color = "black") +
+  facet_wrap(~tethrac_rc_y) +
+  theme_minimal() +
+  labs(y = "Predicted Weekly MVPA (min)",
+       x = "Body Mass Index",
+       title = "Physical Activity and Body Mass Index",
+       subtitle = "by Race/Ethnicity",
+       color = "Sex",
+       tag = "Figure 1")
+```
 
-## Figure 1
-## Figure 2
+## MVPA by School Type
+```{r PA-by-school-type}
+data %>% 
+  ggplot(aes(total_pa_wk_min, tschltype)) +
+  geom_density_ridges(aes(fill = factor(tsex)),
+                      alpha = 0.7) +
+  scale_fill_viridis_d(option = "magma", name = "Sex") +
+  theme_ridges() +
+  labs(title = "Total Physical Activity by School Type",
+       y = "School Type",
+       x = "Predicted Weekly MVPA (min)",
+       tag = "Figure 2")
+```
+
 ## Figure 3
 
 # Discussion
+<!-- 2-3 paragraphs -->
 
 Based on our analysis of adolescents who participated in the FLASE study...
 Implications for programs to promote physical activity in or out of school..
 Implications for policy..
 Next steps for research include examining what motivates adolescents to complete physical activity, and how their environment moderates or mediates the amount of physical activity they complete.
 
-\newpage
-# References 
-
-
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+\newpage
+# References
+**note I cannot correctly format US Dept of HHS**
