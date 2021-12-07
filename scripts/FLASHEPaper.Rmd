@@ -91,27 +91,7 @@ _Study Aim One_
 To address study aim one, if there is an association between an adolescent's total MVPA and sex, after adjusting for age and BMI, a multiple regression was conducted. The dependent variable was an adolescent's total MVPA, which was calculated by adding the scores for 'MVPA during the weekday' and 'MVPA during the weekend'. The independent variable in the model was 'sex' (e.g., female and male). The variables included in the regression model that were controlled for were 'age' and 'BMI'. BMI was calculated from participants' self-reported height and weight with the equation: [weight (lb) / height (in) / height (in)] x 703 [@prevention2014calculating].
 
 _Study Aim Two_
-**here you go Elizabeth...**
-
-### Calculating BMI - {mutate} (NOT IN PAPER BUT CAN MOVE TO OTHER RMD FILE)
-_To calculate BMI, we utilized the {mutate} function._
-
-### Joining Data Sets (NOT IN PAPER BUT MOVE TO OTHER RMD FILE)
-  _Our data was split into two files for size/downloadable reasons: adolescent demographic and adolescent physical activity surveys. Each of these files contained a column containing the variable "PID", or participant identification. The PIDs are unique to each individual who completed the surveys. We used this variable to join these two data sets. This was done using the full join function from the dplyr package. (CITE DPLYR PACKAGE) This was used so we could retain all variables contained within both data sets for each specific participant identified by their unique PID. After fully joining these two data sets, we then needed to tidy up data using functions from the tidyverse and dplyr packages (cite tidyverse and dplyr)._
-  
- _(Load & Join Data Sets Code CHUNK)_
- 
-### Cleaning data - {select},  {characterize}, and {filter} (NOT IN PAPER BUT MOVE TO OTHER RMD FILE)
-_We then wanted to characterize only select variables, hence the use of the {select}--> {characterize} functions. We could not find a way to characterize the data set as a whole without turning some variables' values to NA, so we selected certain variables, characterized them, then rejoined the data sets with the newly characterized data._
-
-_(Cleaning Code Chunks)_
-
-### Calculating Mean Physical Activity - {summarize} and {group_by} 
-_The {group_by} function allowed us to organize our data by school type and sex to appropriately assess for associations between those demographic variables and average total weekly physical activity._
- 
-### {pivot_Longer} for organzing when physical activity occurs
-_The initial data set divided when physical activity was completed by during the week in school (XTPREDWEEKS), during the week out of school (XTPREDWEEKOFS), and on the weekend(XTPREDWEEKW). Using {pivot_longer}, we combined the variables of when/where the physical activity was completed to better visualize across the pattern of when/where and any associations with demographic variables._
-
+To address study aim two, if there is an association between type of school attended and physical activity performed during the week, a one way ANOVA was conducted. The dependent variable was an adolescent's total MVPA, calculated as outlined above. The independent variables were the levels of 'school type' (e.g. public, private, homeschool or other). 
 
 # Results
 ## Participants
