@@ -122,8 +122,45 @@ table_data %>%
    as_gt() %>%
   gt::tab_header(title = "Table 1. Descriptive Characteristics")
 ```
+```{r}
+
+```
+
+
+```{r echo=FALSE}
+
+count <- data %>% count()
+
+data$total_pa_wk_min <- as.vector(data$total_pa_wk_min)
+
+max_MVPA <- data %>% 
+  summarize(max_MVPA = max(total_pa_wk_min))
+
+min_MVPA <- data %>% 
+  summarize(min_MVPA = min(total_pa_wk_min))
+
+mean_age <- data %>%
+  summarize(mean_age = round(mean(tage_x +10), digits=1))
+
+mean_MVPA <- data %>%
+  group_by(tschltype) %>%
+  summarize(mean_MVPA = mean(total_pa_wk_min))
+
+#I keep getting this error and not sure why :1: In mean.default(total_pa_wk_min) :argument is not numeric or logical: returning NA 
+            
+
+
+
+
+  #Found a reference for how to create inline code from the gtsummary table but not working for me yet.. stay tuned
+  #Esme - can you help me add an item to the table of median MVPA?
+  
+```
+
+
 ## Participants
-Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r data %>% count() ` **in-line code here?** 1,192 participants in the final analysis. Adolescents' MVPA varied from as low as **in-line here?** 249.09 minutes to as high as **here too?** 630.16 minutes. Participants were evenly distributed by age and sex. The majority of participants reported attending a public school `r inline_text(table_data, variable = "School Type", level = "Public School", column = "N=1,192" `**in-line?** (85.99%).
+Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r count` in the final analysis. Participants were evenly distributed by age and sex, with a mean age of `r mean_age`. Adolescents' MVPA varied from as low as `r min_MVPA` to as high as `r max_MVPA`. Average weekly MVPA was `r mean_MVPA` **when i figure out how to get it calculated and saved as an object correctly**. The majority of participants reported attending a public school `r inline_text(table_data, variable = School Type, level = "Public School", column = "N=1,192"`
+**leaving this in until we figure out if it knits: in-line?** (85.99%).
 
 
 ##Patterns of Physical Activty by School Type
@@ -165,7 +202,7 @@ data %>%
 ```
 
 ## Study Aim One
-Regression results (presented in Table 2) **if can make one** were used to determine if there was a significant relationship with predicted MVPA during the week and sex, after adjusting for age and BMI. When sex was the only predictor in the model, there was no significant difference in the predicted MVPA of participants, B = -8.42, SE = 4.74, t(1190) = -1.78, p = .08. Sex alone, explained only 0.26% of the variance in predicted MVPA, F(1, 1190) = 3.16, p = .08.
+Regression results (presented in Table 3) **if can make one** were used to determine if there was a significant relationship with predicted MVPA during the week and sex, after adjusting for age and BMI. When sex was the only predictor in the model, there was no significant difference in the predicted MVPA of participants, B = -8.42, SE = 4.74, t(1190) = -1.78, p = .08. Sex alone, explained only 0.26% of the variance in predicted MVPA, F(1, 1190) = 3.16, p = .08.
 
 When age and bmi were adjusted for in the regression model, there was a significant difference in the relationship between sex and predicted MVPA during the week. Female adolescents engaged in 10.06 minutes less MVPA during the week than male participants, SE = 3.35, t(1185) = -3.00, p < .001.
 
@@ -191,9 +228,12 @@ model2 %>%
 
 ## Study Aim Two
 **figure below should work with these results**
+An ANOVA was used to determine if there was a significant association between type of school attended and amount of physical activity performed during the week. The results indicate that there is no significant association. Figure 4 provides a visualization of the associations between the variables of interest (School Type and Predicted Weekly MVPA)
+
 <!-- Figures to be inserted under text they belong -->
 ## MVPA by School Type
 ```{r PA-by-school-type}
+
 data %>% 
   ggplot(aes(total_pa_wk_min, tschltype)) +
   geom_density_ridges(aes(fill = factor(tsex)),
