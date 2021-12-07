@@ -40,6 +40,7 @@ library(gtsummary)
 library(tidyverse)
 library(ggridges)
 library(knitr) # can't remember if I used this or used it to try something
+
 ```
 
 
@@ -88,16 +89,16 @@ _Demographic Characteristics_
 Descriptive statistics were performed to determine the distribution of study variables among participants and to check for skewness and kurtosis. All analysis was conducted with the statistical software R [@R] **check if this worked in knit**.
 
 _Study Aim One_
-To address study aim one, if there is an association between an adolescent's total MVPA and sex, after adjusting for age and BMI, a multiple regression was conducted. The dependent variable was an adolescent's total MVPA, which was calculated by adding the scores for 'MVPA during the weekday' and 'MVPA during the weekend'. The independent variable in the model was 'sex' (e.g., female and male). The variables included in the regression model that were controlled for were 'age' and 'BMI'. BMI was calculated from participants' self-reported height and weight with the equation: [weight (lb) / height (in) / height (in)] x 703 [@prevention2014calculating].
+To address Study Aim 1, if there is an association between an adolescent's total MVPA and sex, after adjusting for age and BMI, a multiple regression was conducted. The dependent variable was an adolescent's total MVPA, which was calculated by adding the scores for 'MVPA during the weekday' and 'MVPA during the weekend'. The independent variable in the model was 'sex' (e.g., female and male). The variables included in the regression model that were controlled for were 'age' and 'BMI'. BMI was calculated from participants' self-reported height and weight with the equation: [weight (lb) / height (in) / height (in)] x 703 [@prevention2014calculating].
 
 _Study Aim Two_
-To address study aim two, if there is an association between type of school attended and physical activity performed during the week, a one way ANOVA was conducted. The dependent variable was an adolescent's total MVPA, calculated as outlined above. The independent variables were the levels of 'school type' (e.g. public, private, homeschool or other). 
+To address Study Aim 2, if there is an association between type of school attended and physical activity performed during the week, a one way ANOVA was conducted. The dependent variable was an adolescent's total MVPA, calculated as outlined above. The independent variables were the levels of 'school type' (e.g. public, private, homeschool or other). 
+
+For both Study Aims 1 and 2 we created figures to visualize the data and results.
 
 # Results
-## Participants
-Table 1 displays the results of the descriptive characteristics of this sample. In total, there were **in-line code here?** 1,192 participants in the final analysis. Adolescents' MVPA varied from as low as **in-line here?** 249.09 minutes to as high as **here too?** 630.16 minutes. Participants were evenly distributed by age and sex. The majority of participants reported attending a public school **in-line?** (85.99%).
 
-## Summary Table **remove the heading for final knit**
+## Summary Table 1**remove the heading for final knit**
 ```{r summary-data-table-one}
 data <- import(here("data", "final.csv")) %>% 
   as_tibble() %>% 
@@ -121,6 +122,26 @@ table_data %>%
    as_gt() %>%
   gt::tab_header(title = "Table 1. Descriptive Characteristics")
 ```
+## Participants
+Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r data %>% count() ` **in-line code here?** 1,192 participants in the final analysis. Adolescents' MVPA varied from as low as **in-line here?** 249.09 minutes to as high as **here too?** 630.16 minutes. Participants were evenly distributed by age and sex. The majority of participants reported attending a public school `r inline_text(table_data, variable = "School Type", level = "Public School", column = "N=1,192" `**in-line?** (85.99%).
+
+
+##Patterns of Physical Activty by School Type
+Table 2 displays the the amount of weekly physical activity and when it was completed (during the week or on the weekend) across school types with respect to sex. Average BMI per school type and sex is also included.
+
+## Summary Table 2 **remove the heading for final knit**
+```{r}
+summary_table1 <- data %>%
+  group_by(tschltype, tsex) %>%
+  summarize(mean_age=mean(tage_x + 10), mean_bmi= mean(bmi), sd_bmi=sd(bmi), mean_total_pa_wk_min = mean(total_pa_wk_min), sd_total_pa_wk_min=sd(total_pa_wk_min), mean_weekofs= mean(xtpredweekofs), sd_weekofs= sd(xtpredweekofs), mean_weekw= mean(xtpredweekw), sd_weekw=sd(xtpredweekw)) 
+
+summary_table1 %>%
+  kable(caption = "Table 2. Pattern of Physical Activity by School Type",
+        col.names = c("School Type", "Sex", "Mean age", "Mean BMI", "SD of BMI", "Mean Weekly Minutes of PA", "SD of Weekly Minutes of PA", "Mean minutes of PA during the Week", "SD of minutes of PA during the Week", "Mean minutes of PA on weekend", "SD of minutes of PA on weekend", ), 
+        digits = 2)
+
+```
+
 
 Participants' average MVPA by age is displayed in Figure 3. Patterns were observed with decreases in the predicted MVPA as participants got older. Male participants were predicted to obtain a higher average of MVPA than their female counterparts, but not by much more.
 
