@@ -13,10 +13,6 @@ Liz:
 Esme:
 - Discussion Section **can someone share this task**
 Zach:
-- Write 2 Intro paragraphs (done)
-- Preliminary methods sections (done)
-- Abstract (after everyone else is done)
-- Make bibliography
 - In text citations
 - Final Formatting
 
@@ -39,41 +35,49 @@ library(knitr) # can't remember if I used this or used it to try something
 
 ```
 
-
-```{css, echo=FALSE}
-h1 {
-  text-align: center;
-}
-```
-
 # Abstract
-__ZACH WILL WRITE AT THE END__
+Physical activity is beneficial for young people due to myriad benefits associated with enhanced physical and mental health: self-efficacy and mood, fostering normal growth and development, and reducing risk of chronic morbidity. For adolescents, achieving the recommended 60 minutes per day of moderate to vigorous physical activity (MVPA) is often an indicator of academic achievement. Despite these benefits, less than a quarter (24%) of school-aged youth meet recommendations. There are many ways in which a child may meet these recommendations, one of which is through time and resources available in the school setting (e.g., physical education classes, access to school physical activity resources, active transportation to and from school, etc.). However, not all schools provide these resources, and this may differ by the type of school attended (e.g., private, public, home, or other). Thus, patterns of PA may differ based upon these characteristics. Furthermore, there is evidence to suggest that time spent performing MVPA differs by individual characteristics such as body mass index (BMI) and sex (male/female). This study will investigate those patterns of physical activity among adolescents using Family Life, Activity, Sun, Health and Eating (FLASHE) study dataset from the National Cancer Institute. The driving questions of this study are: 1) How do patterns of MVPA for adolescents vary by sex after controlling for age and BMI?, and 2) Does minutes of MVPA performed during the week differ by the type of school attended (private, public, home, or other). 
 
 # Introduction
-  It is well known that regular physical activity (PA) is associated with a myriad of physical and mental health benefits. These benefits may be proximal in time to the performance of PA, such as reduced anxiety-like feelings, lower blood pressure, and enhanced cognitive function, or they may be more distal, such as increased strength and cardio-respiratory fitness, decreased depression-like symptoms, and long-term reduction of blood pressure _(Piercy KL, Troiano RP, Ballard RM, et al. The Physical Activity Guidelines for Americans. JAMA. 2018;320(19):2020–2028. doi:10.1001/jama.2018.14854)_. Regular PA is especially important for school-aged children (6-17 years old); PA has been shown to foster normal growth and development, improve mood and sleep quality, and greatly reduce the risk for developing chronic disease(s) as an adult _(Piercy KL, Troiano RP, Ballard RM, et al. The Physical Activity Guidelines for Americans. JAMA. 2018;320(19):2020–2028. doi:10.1001/jama.2018.14854)._ Aside from these physiological benefits, physically active students tend to have better educational outcomes (e.g., better grades, enhanced cognitive performance, and decreased behavioral problems) when compared to their less-active peers _(Centers for Disease Control and Prevention. The Association Between School-Based Physical Activity, Including Physical Education, and Academic Performance. Atlanta, GA; Centers for Disease Control and Prevention, US Department of Health and Human Services; 2010.)._ In addition, as both practice and research trends are leaning away from using body size, such as Body Mass Index (BMI), as a marker for physical health, they are turning to measures of regular physical activity and quantity of MVPA to indicate physical health (CITE).
-  As outlined by the U.S. Department of Health and Human Services 2nd edition of the "Physical Activity Guidelines for Americans" (2018), the recommended daily dose of moderate- to vigorous-intensity physical activity (MVPA) for school-aged youth in the United States (US) is 60 minutes _(CITE https://health.gov/our-work/nutrition-physical-activity/physical-activity-guidelines/current-guidelines)_. Despite these recommendations regarding the benefits of meeting them, less than a quarter (24%) of school-aged children in the US achieve the recommended 60 minutes of MVPA a day _(The Child & Adolescent Health Measurement Initiative (CAHMI). 2016 National Survey of Childrens Health. Data Resource Center for Child and Adolescent Health;2016)._ **need to remove the citations that were removed from the intro I started**
+  It is well known that regular physical activity (PA) is associated with a myriad of physical and mental health benefits. These benefits may be proximal in time to the performance of PA, such as reduced anxiety-like feelings, lower blood pressure, and enhanced cognitive function, or they may be more distal, such as increased strength and cardio-respiratory fitness, decreased depression-like symptoms, and long-term reduction of blood pressure [@nebeling]. Regular PA is especially important for school-aged children (6-17 years old); PA has been shown to foster normal growth and development, improve mood and sleep quality, and greatly reduce the risk for developing chronic disease(s) as an adult [@nebeling]. Aside from these physiological benefits, physically active students tend to have better educational outcomes (e.g., better grades, enhanced cognitive performance, and decreased behavioral problems) when compared to their less-active peers [@rasberry]. In addition, as both practice and research trends are leaning away from using body size, such as Body Mass Index (BMI), as a marker for physical health, they are turning to measures of regular physical activity and quantity of MVPA to indicate physical health _(CITE)_.
+  As outlined by the U.S. Department of Health and Human Services 2nd edition of the "Physical Activity Guidelines for Americans" (2018), the recommended daily dose of moderate- to vigorous-intensity physical activity (MVPA) for school-aged youth in the United States (US) is 60 minutes [@services]. Despite these recommendations regarding the benefits of meeting them, less than a quarter (24%) of school-aged children in the US achieve the recommended 60 minutes of MVPA a day [@child].
   Many personal and environmental factors affect a child's ability to complete the recommended 60 minutes of MVPA a day. School-aged children spend nearly 3/4 of their weekdays in school, and yet there is a dearth of research addressing the association between school type (e.g. private, public, home-school) and health, specifically regarding physical activity. The link between type of school attended and physical activity needs to be examined due to the potential for program development and policy changes related to physical education class requirements in school. This paper seeks to address this gap in the literature by examining both patterns and quantity of physical activity according to demographics and type of school attended.
   _also let's talk about total MVPA, will mutate new total PA variabel_ -
   This study will investigate those patterns of physical activity among adolescents and how various factors may be associated with MVPA during the week. The driving questions of this study are: 1) How do patterns of MVPA for adolescents vary by sex after controlling for age and BMI?, and 2) Does minutes of MVPA performed during the week differ by the type of school attended (private, public, home, or other). We hypothesize that: 1) Patterns of MVPA of adolescents will significantly vary by sex after controlling for age and BMI, and 2) There will be a significant association between the type of school attended and the weekly minutes of MVPA performed by adolescents.
 
 # Methods
 ## Data Source
-This project uses data from the Family Life, Activity, Sun, Health and Eating (FLASHE) study. FLASHE data was collected through a cross-sectional design, using an internet-based survey _(CITE from https://cancercontrol.cancer.gov/brp/hbrb/flashe-study)._**Zach, I think you should cite the Oh 2017 article (in .bib file) for previous sentence**. Data collection occurred between April and October of 2014. The FLASHE study asked questions enabling researchers to examine correlates of cancer-related behaviors using behavioral measures of diet and physical activity, and other behaviors associated with cancer risk, such as sun-safety, sleep, and tobacco consumption. Sampling for the FLASHE study was drawn from a Consumer Opinion Panel and sampling design was intended to collect a representative sample reflective of demographics for the United States' general population (e.g., sex, education, income, age, region, household size). The conceptual model for the FLASHE study can be seen in Figure 1. It is important to note that data collection took place by sampling dyads of parent/caregiver-adolescent(ages 12-17). The FLASHE enrollment and design structure can be seen in Figure 2.
+This project uses data from the Family Life, Activity, Sun, Health and Eating (FLASHE) study. FLASHE data was collected through a cross-sectional design, using an internet-based survey [@recruitment]. Data collection occurred between April and October of 2014. The FLASHE study asked questions enabling researchers to examine correlates of cancer-related behaviors using behavioral measures of diet and physical activity, and other behaviors associated with cancer risk, such as sun-safety, sleep, and tobacco consumption. Sampling for the FLASHE study was drawn from a Consumer Opinion Panel and sampling design was intended to collect a representative sample reflective of demographics for the United States' general population (e.g., sex, education, income, age, region, household size). The conceptual model for the FLASHE study can be seen in Figure 1. It is important to note that data collection took place by sampling dyads of parent/caregiver-adolescent(ages 12-17). The FLASHE enrollment and design structure can be seen in Figure 2.
 
-### Figure 1: FLASHE Conceptual Model **FYI Zach won't knit cuz of this. Maybe not in repo directory?**
-![FLASHE Conceptual Model](/Users/zsfarley/Desktop/images/FLASHE_Concept.jpg)
+### _Figure 1: FLASHE Conceptual Model_
+```{r results = 'asis', out.height="400px", out.width="300px"}
+download.file(url = "https://cancercontrol.cancer.gov/sites/default/files/2020-07/NCI-FLASHE-Conceptual-Model.jpg",
+              destfile = "image1.png",
+              mode = 'wb')
+knitr::include_graphics(path = "image1.png")
+```
 
-### Figure 2: FLASHE Enrollment and Design
-![FLASHE Enrollment and Design](/Users/zsfarley/Desktop/images/FLASHE_Enrollment.jpg)
+
+### _Figure2: FLASHE Enrollment and Design_
+```{r results = 'asis', out.height="400px", out.width="300px"}
+download.file(url = "https://cancercontrol.cancer.gov/sites/default/files/2020-11/NCI-FLASHE-Dyad-Competition-Rate.jpg",
+              destfile = "image2.png",
+              mode = 'wb')
+knitr::include_graphics(path = "image2.png")
+```
+
 ## Sample Selection
 In our study, we aim to examine patterns of adolescent MVPA, including when and how much MVPA they perform, and to explore the association between adolescents' weekly minutes of MVPA and their sex, after adjusting for age and body mass index (BMI), as well as explore the association between adolescent's school type with their exercise patterns. For the purpose of this study, our final sample will be composed of teenagers (13-17 years old) who gave responses for all physical activity and demographic variables. This process and final sample size is explained in the following sections.
 
 ## Statistical Analysis
+### Software Note
+All analysis was conducted with the statistical software R [@R]. The tidyverse package and others contained within the tidyverse package, such as ggplot2, dplyr, tidyr were used to clean, and visualize FLASHE data [@tidyverse], [@ggplot2], [@dplyr], [@tidyr]. Additionally, the here, rio, and janitor packages were used to assist in importing and cleaning data [@here], [@rio], [@janitor]. Also, the ggridges package was used to visualize data in a ridge plot [@ggridges]. The gtsummary package was used to display tables in an easier to read and constant format [@gtsummary]. 
+
 _Demographic Characteristics_
 Descriptive statistics were performed to determine the distribution of study variables among participants and to check for skewness and kurtosis. All analysis was conducted with the statistical software R [@R] **check if this worked in knit**.
 
 _Study Aim One_
-To address Study Aim 1, if there is an association between an adolescent's total MVPA and sex, after adjusting for age and BMI, a multiple regression was conducted. The dependent variable was an adolescent's total MVPA, which was calculated by adding the scores for 'MVPA during the weekday' and 'MVPA during the weekend'. The independent variable in the model was 'sex' (e.g., female and male). The variables included in the regression model that were controlled for were 'age' and 'BMI'. BMI was calculated from participants' self-reported height and weight with the equation: [weight (lb) / height (in) / height (in)] x 703 [@prevention2014calculating].
+To address Study Aim 1, if there is an association between an adolescent's total MVPA and sex, after adjusting for age and BMI, a multiple regression was conducted. The dependent variable was an adolescent's total MVPA, which was calculated by adding the scores for 'MVPA during the weekday' and 'MVPA during the weekend'. The independent variable in the model was 'sex' (e.g., female and male). The variables included in the regression model that were controlled for were 'age' and 'BMI'. BMI was calculated from participants' self-reported height and weight with the equation: [weight (lb) / height (in) / height (in)] x 703 [@prevention].
 
 _Study Aim Two_
 To address Study Aim 2, if there is an association between type of school attended and physical activity performed during the week, a one way ANOVA was conducted. The dependent variable was an adolescent's total MVPA, calculated as outlined above. The independent variables were the levels of 'school type' (e.g. public, private, homeschool or other). For both study aims (1 and 2) figures were created to visualize the data and results.
@@ -139,10 +143,10 @@ avg_MVPA <- data %>%
   
 ```
 
-## Participants
-Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r count` in the final analysis. Participants were evenly distributed by age and sex, with a mean age of `r mean_age`. Adolescents' MVPA varied from as low as `r min_MVPA` to as high as `r max_MVPA`. Average weekly MVPA was `r avg_MVPA`. The majority of participants reported attending a public school `r inline_text(table_data, variable = School Type, level = "Public School", column = "N=1,192"`
+## Participants 
+__THIS DOES NOT WORK FOR KNIT right now, when i took it out and tried to run everything else (minus also the regression code chunk), everything else could knit... so this needs to be worked out still :)__
+Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r count` in the final analysis. Participants were evenly distributed by age and sex, with a mean age of `r mean_age`. Adolescents' MVPA varied from as low as `r min_MVPA` to as high as `r max_MVPA`. Average weekly MVPA was `r avg_MVPA`. The majority of participants reported attending a public school `r inline_text(table_data, variable = School Type, level = "Public School", column = "N=1,192"` 
 **leaving this in until we figure out if it knits: in-line?** (85.99%).
-<!-- don't think last inline code will work, I say just leave it out lol -->
 
 ##Patterns of Physical Activty by School Type
 Table 2 displays the the amount of weekly MVPA across school types with respect to sex. Average BMI per school type is also included.
@@ -192,7 +196,7 @@ data %>%
 Regression results (presented in Table 3) were used to determine if there was a significant relationship with predicted MVPA during the week and sex, after adjusting for age and BMI. When sex was the only predictor in the model, there was no significant difference in the predicted MVPA of participants, B = -8.42, SE = 4.74, t(1190) = -1.78, p = .08. Sex alone, explained only 0.26% of the variance in predicted MVPA, F(1, 1190) = 3.16, p = .08.
 
 When age and bmi were adjusted for in the regression model, there was a significant difference in the relationship between sex and predicted MVPA during the week. Female adolescents engaged in 10.06 minutes less MVPA during the week than male participants, SE = 3.35, t(1185) = -3.00, p < .001.
-
+__This code chunk did not run when knitted__
 ```{r regression-code}
 # regression without controlled variables of age and bmi (Model 1)
 # Make "Male" the reference group in predictor variable: tsex
