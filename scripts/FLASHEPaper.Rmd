@@ -3,19 +3,8 @@ author: "Elizabeth Bates, Esmeralda Castro, & Zach Farley"
 date: "12/8/2021"
 output: pdf_document
 bibliography: references.bib
-title: "Patterns of Adolescent Physical Activity"
+title: "Patterns of Adolescent Moderate to Vigorous Physical Activity"
 ---
-Liz: 
-- Write 3rd paragraph in intro
-- Methods Section (minus esmes part)
-- Start results section with in-text code (N = , % boys/girls,  avg age, avg weekly MVPA) to describe summary table, and insert summary table.
-- Data analysis section (short paragraph)
-Esme:
-- Discussion Section **can someone share this task**
-Zach:
-- In text citations
-- Final Formatting
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,
@@ -36,7 +25,7 @@ library(knitr) # can't remember if I used this or used it to try something
 ```
 
 # Abstract
-Physical activity is beneficial for young people due to myriad benefits associated with enhanced physical and mental health: self-efficacy and mood, fostering normal growth and development, and reducing risk of chronic morbidity. For adolescents, achieving the recommended 60 minutes per day of moderate to vigorous physical activity (MVPA) is often an indicator of academic achievement. Despite these benefits, less than a quarter (24%) of school-aged youth meet recommendations. There are many ways in which a child may meet these recommendations, one of which is through time and resources available in the school setting (e.g., physical education classes, access to school physical activity resources, active transportation to and from school, etc.). However, not all schools provide these resources, and this may differ by the type of school attended (e.g., private, public, home, or other). Thus, patterns of PA may differ based upon these characteristics. Furthermore, there is evidence to suggest that time spent performing MVPA differs by individual characteristics such as body mass index (BMI) and sex (male/female). This study will investigate those patterns of physical activity among adolescents using Family Life, Activity, Sun, Health and Eating (FLASHE) study dataset from the National Cancer Institute. The driving questions of this study are: 1) How do patterns of MVPA for adolescents vary by sex after controlling for age and BMI?, and 2) Does minutes of MVPA performed during the week differ by the type of school attended (private, public, home, or other). 
+Physical activity is beneficial for young people due to myriad benefits associated with enhanced physical and mental health: self-efficacy and mood, fostering normal growth and development, and reducing risk of chronic morbidity. For adolescents, achieving the recommended 60 minutes per day of moderate to vigorous physical activity (MVPA) is often an indicator of academic achievement. Despite these benefits, less than a quarter (24%) of school-aged youth meet recommendations. There are many ways in which a child may meet these recommendations, one of which is through time and resources available in the school setting (e.g., physical education classes, access to school physical activity resources, active transportation to and from school, etc.). However, not all schools provide these resources, and this may differ by the type of school attended (e.g., private, public, home, or other). Thus, patterns of PA may differ based upon these characteristics. Furthermore, there is evidence to suggest that time spent performing MVPA differs by individual characteristics such as body mass index (BMI) and sex (male/female). This study will investigate those patterns of physical activity among adolescents using Family Life, Activity, Sun, Health and Eating (FLASHE) study dataset from the National Cancer Institute. The driving questions of this study are: 1) How do patterns of MVPA for adolescents vary by sex after controlling for age and BMI?, and 2) Does minutes of MVPA performed weekly differ by the type of school attended (private, public, home, or other). 
 
 # Introduction
   It is well known that regular physical activity (PA) is associated with a myriad of physical and mental health benefits. These benefits may be proximal in time to the performance of PA, such as reduced anxiety-like feelings, lower blood pressure, and enhanced cognitive function, or they may be more distal, such as increased strength and cardio-respiratory fitness, decreased depression-like symptoms, and long-term reduction of blood pressure [@nebeling]. Regular PA is especially important for school-aged children (6-17 years old); PA has been shown to foster normal growth and development, improve mood and sleep quality, and greatly reduce the risk for developing chronic disease(s) as an adult [@nebeling]. Aside from these physiological benefits, physically active students tend to have better educational outcomes (e.g., better grades, enhanced cognitive performance, and decreased behavioral problems) when compared to their less-active peers [@rasberry]. In addition, as both practice and research trends are leaning away from using body size, such as Body Mass Index (BMI), as a marker for physical health, they are turning to measures of regular physical activity and quantity of MVPA to indicate physical health _(CITE)_.
@@ -80,9 +69,10 @@ _Study Aim One_
 To address Study Aim 1, if there is an association between an adolescent's total MVPA and sex, after adjusting for age and BMI, a multiple regression was conducted. The dependent variable was an adolescent's total MVPA, which was calculated by adding the scores for 'MVPA during the weekday' and 'MVPA during the weekend'. The independent variable in the model was 'sex' (e.g., female and male). The variables included in the regression model that were controlled for were 'age' and 'BMI'. BMI was calculated from participants' self-reported height and weight with the equation: [weight (lb) / height (in) / height (in)] x 703 [@prevention].
 
 _Study Aim Two_
-To address Study Aim 2, if there is an association between type of school attended and physical activity performed during the week, a one way ANOVA was conducted. The dependent variable was an adolescent's total MVPA, calculated as outlined above. The independent variables were the levels of 'school type' (e.g. public, private, homeschool or other). For both study aims (1 and 2) figures were created to visualize the data and results.
+To address Study Aim 2, if there is an association between type of school attended and physical activity performed during the week, a one way ANOVA was conducted. The dependent variable was an adolescent's total MVPA, calculated as outlined above. The independent variables were the levels of 'school type' (e.g. public, private, home-school or another school type). For both study aims (1 and 2) figures were created to visualize the data and results.
 
 # Results
+
 
 ## Summary Table 1**remove the heading of for the code chunk for final knit**
 ```{r summary-data-table-one}
@@ -110,7 +100,7 @@ table_data %>%
 ```
 
 ```{r echo=FALSE}
-
+#saving objects to use for inline code
 count <- data %>% count()
 
 data$total_pa_wk_min <- as.vector(data$total_pa_wk_min)
@@ -132,37 +122,35 @@ mean_MVPA <- data %>%
 avg_MVPA <- data %>% 
   summarize(avg_MVPA = round(mean(total_pa_wk_min), digits =2))
 
+pub_school <- table_data %>%
+  filter(`School Type`== "Public school")
 
-  #Found a reference for how to create inline code from the gtsummary table but not working for me yet.. stay tuned
-  #Esme - can you help me add an item to the table of median MVPA?
+pct_pub_school <- pub_school %>%
+ summarize(round((count(pub_school)/count) *100))
   
 ```
 
 ## Participants 
-__THIS DOES NOT WORK FOR KNIT right now, when i took it out and tried to run everything else (minus also the regression code chunk), everything else could knit... so this needs to be worked out still :)__
-Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r count` in the final analysis. Participants were evenly distributed by age and sex, with a mean age of `r mean_age`. Adolescents' MVPA varied from as low as `r min_MVPA` to as high as `r max_MVPA`. Average weekly MVPA was `r avg_MVPA`. The majority of participants reported attending a public school **`r inline_text(table_data, variable = School Type, level = "Public School", column = "N=1,192"`** 
-**leaving this in until we figure out if it knits: in-line?** (85.99%).
+Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r count` in the final analysis. Participants were evenly distributed by age and sex, with a mean age of `r mean_age`. Adolescents' MVPA varied from as low as `r min_MVPA` to as high as `r max_MVPA`. Average weekly MVPA was `r avg_MVPA`. The majority of participants reported attending a public school `r pct_pub_school` 
 
-##Patterns of Physical Activty by School Type
+_Patterns of Physical Activity by School Type_
 Table 2 displays the the amount of weekly MVPA across school types with respect to sex. Average BMI per school type is also included.
 
-## Summary Table 2 **remove the heading for final knit**
 ```{r}
 summary_table1 <- data %>%
   group_by(tschltype, tsex) %>%
   summarize(mean_age=mean(tage_x + 10), mean_bmi= mean(bmi), mean_total_pa_wk_min = mean(total_pa_wk_min), sd_total_pa_wk_min=sd(total_pa_wk_min))
 
-table_data <- summary_table1 %>% 
-  select(c(1:6))
+table_data2 <- summary_table1
 
-colnames(table_data) <- c("School Type", "Sex", "Mean Age", "Mean BMI", "Average Weekly Minutes of MVPA", "SD of Average Weekly Minutes of MVPA")
+colnames(table_data2) <- c("School Type", "Sex", "Mean Age", "Mean BMI", "Average Weekly Minutes of MVPA", "SD of Average Weekly Minutes of MVPA")
 
-summary_table1 %>%
-  kable(caption = "Table 2. Pattern of Physical Activity by School Type",
+table_data2 %>%
+  kable(caption = "Table 2. Amount Physical Activity by School Type",
         digits = 2,
         booktabs = TRUE) %>% 
   kableExtra::column_spec(1, bold = TRUE) %>% 
-  kableExtra::column_spec(1:7, width = "1.5cm")
+  kableExtra::column_spec(1:6, width = "1.8cm")
 ```
 
 Participants' average MVPA by age is displayed in Figure 3. Patterns were observed with decreases in the predicted MVPA as participants got older. Male participants were predicted to obtain a higher average of MVPA than their female counterparts, but not by much more.
@@ -190,6 +178,7 @@ data %>%
 Regression results (presented in Table 3) were used to determine if there was a significant relationship with predicted MVPA during the week and sex, after adjusting for age and BMI. When sex was the only predictor in the model, there was no significant difference in the predicted MVPA of participants, B = -8.42, SE = 4.74, t(1190) = -1.78, p = .08. Sex alone, explained only 0.26% of the variance in predicted MVPA, F(1, 1190) = 3.16, p = .08.
 
 When age and bmi were adjusted for in the regression model, there was a significant difference in the relationship between sex and predicted MVPA during the week. Female adolescents engaged in 10.06 minutes less MVPA during the week than male participants, SE = 3.35, t(1185) = -3.00, p < .001.
+
 __This code chunk did not run when knitted__
 ```{r regression-code}
 # regression without controlled variables of age and bmi (Model 1)
@@ -219,8 +208,6 @@ model2 %>%
 ## Study Aim Two
 An ANOVA was used to determine if there was a significant association between type of school attended and amount of physical activity performed during the week. The results indicate that there is no significant association. Figure 4 provides a visualization of the associations between the variables of interest (School Type and Predicted Weekly MVPA)
 
-<!-- Figures to be inserted under text they belong -->
-## MVPA by School Type
 ```{r PA-by-school-type}
 
 data %>% 
@@ -236,13 +223,10 @@ data %>%
 ```
 
 # Discussion
-<!-- 2-3 paragraphs -->
-This investigation sought to determine the pattern of adolescents' MVPA during the week based on various demographic characteristics. It is important that patterns are identified so that any existing disparities are addressed as all adolescents can benefit from engaging in adequate MVPA.
+  This investigation sought to determine the pattern of adolescents' weekly MVPA based on various demographic characteristics, such as age and sex, and the type of school attended. It is important that patterns are identified so that any existing disparities are addressed as all adolescents can benefit from engaging in adequate MVPA. Based on this data analysis, females completed significantly less physical activity than males. Contributing factors to this association need to be explored in future research, as it can guide future physical activity program development. 
+  This research has implications for physical activity programs design, including in school physical education programs, and policy development and to promote physical activity in and outside of schools. Based on this analysis, the total amount of weekly physical activity is not associated with school type, suggesting that one type of school’s physical education program does not surpass the others. It could be interpreted that all schools have effective programs, or that there is room for improvement for all. When taking into consideration the state of research about insufficient school physical education programs, it can be inferred that the latter is true and better programs and policies are needed. Effectively designed programs and policies can greatly impact a child’s volume of weekly physical activity. 
+  Next steps for research include examining what motivates adolescents to complete physical activity, and how their social and physical environments moderate or mediate the amount of physical activity they complete. 
 
-Based on our analysis of adolescents who participated in the FLASE study...
-Implications for programs to promote physical activity in or out of school..
-Implications for policy..
-Next steps for research include examining what motivates adolescents to complete physical activity, and how their environment moderates or mediates the amount of physical activity they complete.
 
 **Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plots and tables**
 
