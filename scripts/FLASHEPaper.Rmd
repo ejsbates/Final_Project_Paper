@@ -142,7 +142,6 @@ table_data %>%
   gtsummary::tbl_summary() %>% 
    as_gt() %>%
   gt::tab_header(title = "Table 1. Descriptive Characteristics")
-
 ```
 
 ## Patterns of Physical Activity by School Type
@@ -165,10 +164,10 @@ table_data2 %>%
   kableExtra::column_spec(1:6, width = "1.8cm")
 ```
 
-Participants' average MVPA by age is displayed in Figure 3. Patterns were observed with decreases in the predicted MVPA as participants got older. Male participants were predicted to obtain a higher average of MVPA than their female counterparts, but not by much more.
+Participants' average MVPA by age, with respect to sex, is displayed in Figure 3. Patterns were observed with decreases in the predicted MVPA as participants got older. Male participants were predicted to obtain a higher average of MVPA than their female counterparts, but not by much more.
 
 
-```{r fig-three-PA-BMI-race-ethnicity}
+```{r fig-three-PA-age-sex}
 data %>% 
   group_by(tage_y, tsex) %>% 
   summarize(mean_mvpa = mean(total_pa_wk_min)) %>% 
@@ -180,16 +179,16 @@ data %>%
   labs(y = "Predicted Average MVPA (min/week)",
        x = "Sex",
        title = "Physical Activity by Sex",
-       subtitle = "with Age and BMI",
+       subtitle = "showed by Age (years)",
        tag = "Figure 3.") +
   theme(legend.title = element_blank()) +
   theme(axis.text.x = element_blank())
 ```
 
 ## Study Aim One
-Regression results (presented in Table 3) were used to determine if there was a significant relationship with predicted MVPA during the week and sex, after adjusting for age and BMI. When sex was the only predictor in the model, there was no significant difference in the predicted MVPA of participants, B = -8.42, SE = 4.74, t(1190) = -1.78, p = .08. Sex alone, explained only 0.26% of the variance in predicted MVPA, F(1, 1190) = 3.16, p = .08.
+Regression results (presented in Table 3) were used to determine if there was a significant relationship with predicted MVPA during the week and sex, after adjusting for age and BMI. When sex was the only predictor in the model, there was no significant difference in the predicted MVPA of participants, _B_ = 8.42, _SE_ = 4.74, _t_(1190) = 1.78, _p_ = .08. Sex alone, explained only 0.26% of the variance in predicted MVPA, _F_(1, 1190) = 3.16, _p_ = .08.
 
-When age and bmi were adjusted for in the regression model, there was a significant difference in the relationship between sex and predicted MVPA during the week. Female adolescents engaged in 10.06 minutes less MVPA during the week than male participants, SE = 3.35, t(1185) = -3.00, p < .001.
+When age and bmi were adjusted for in the regression model, there was a significant difference in the relationship between sex and predicted MVPA during the week. Male adolescents engaged in 10.06 minutes more MVPA during the week than male participants, _SE_ = 3.35, _t_(1185) = -3.00, _p_ < .001.
 
 ```{r regression-code, results='hide'}
 # regression without controlled variables of age and bmi (Model 1)
