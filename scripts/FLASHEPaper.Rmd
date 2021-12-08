@@ -2,6 +2,8 @@
 title: "Patterns of Adolescent Moderate to Vigorous Physical Activity"
 author: "Elizabeth Bates, Esmeralda Castro, & Zach Farley"
 date: "12/8/2021"
+header-includes:
+    - \usepackage{setspace}\doublespacing
 output: pdf_document
 geometry: margin=1in
 fontsize: 12pt
@@ -27,8 +29,12 @@ library(knitr)
 
 ```
 
+\newpage
+
 # Abstract
 Physical activity is beneficial for young people due to myriad benefits associated with enhanced physical and mental health: self-efficacy and mood, fostering normal growth and development, and reducing risk of chronic morbidity. For adolescents, achieving the recommended 60 minutes per day of moderate to vigorous physical activity (MVPA) is often an indicator of academic achievement. Despite these benefits, less than a quarter (24%) of school-aged youth meet recommendations. There are many ways in which a child may meet these recommendations, one of which is through time and resources available in the school setting (e.g., physical education classes, access to school physical activity resources, active transportation to and from school, etc.). However, not all schools provide these resources, and this may differ by the type of school attended (e.g., private, public, home, or other). Thus, patterns of PA may differ based upon these characteristics. Furthermore, there is evidence to suggest that time spent performing MVPA differs by individual characteristics such as body mass index (BMI) and sex (male/female). This study will investigate those patterns of physical activity among adolescents using Family Life, Activity, Sun, Health and Eating (FLASHE) study dataset from the National Cancer Institute. The driving questions of this study are: 1) How do patterns of MVPA for adolescents vary by sex after controlling for age and BMI?, and 2) Does minutes of MVPA performed weekly differ by the type of school attended (private, public, home, or other). 
+
+\newpage
 
 # Introduction
   It is well known that regular physical activity (PA) is associated with a myriad of physical and mental health benefits. These benefits may be proximal in time to the performance of PA, such as reduced anxiety-like feelings, lower blood pressure, and enhanced cognitive function, or they may be more distal, such as increased strength and cardio-respiratory fitness, decreased depression-like symptoms, and long-term reduction of blood pressure [@nebeling]. Regular PA is especially important for school-aged children (6-17 years old); PA has been shown to foster normal growth and development, improve mood and sleep quality, and greatly reduce the risk for developing chronic disease(s) as an adult [@nebeling]. Aside from these physiological benefits, physically active students tend to have better educational outcomes (e.g., better grades, enhanced cognitive performance, and decreased behavioral problems) when compared to their less-active peers [@rasberry]. In addition, as both practice and research trends are leaning away from using body size, such as Body Mass Index (BMI), as a marker for physical health, they are turning to measures of regular physical activity and quantity of MVPA to indicate physical health [@hunger].
@@ -215,7 +221,7 @@ model2 %>%
 ```
 
 ## Study Aim Two
-An ANOVA was used to determine if there was a significant association between type of school attended and amount of physical activity performed during the week. The results indicate that there is no significant association, (F(3,1188) = 0.736, p = 0.531 (p > .05)). Figure 4 provides a visualization of the associations between the variables of interest (School Type and Predicted Weekly MVPA)
+An ANOVA was used to determine if there was a significant association between type of school attended and amount of physical activity performed during the week. The results indicate that there is no significant association, _F_(3,1188) = 0.736, _p_ = 0.531, _p_ > .05. Figure 4 provides a visualization of the associations between the variables of interest (School Type and Predicted Weekly MVPA) stratified by sex. 
 
 ```{r}
 anova_school <- aov(total_pa_wk_min ~ tschltype, data = data_new_names)
@@ -236,6 +242,7 @@ data %>%
        tag = "Figure 4.")
 ```
 
+\newpage
 # Discussion
   This investigation sought to determine the pattern of adolescents' weekly MVPA based on various demographic characteristics, such as age and sex, and the type of school attended. It is important that patterns are identified so that any existing disparities are addressed as all adolescents can benefit from engaging in adequate MVPA. Based on this data analysis, females completed significantly less physical activity than males. Contributing factors to this association need to be explored in future research, as it can guide future physical activity program development. 
   This research has implications for physical activity programs design, including in school physical education programs, and policy development and to promote physical activity in and outside of schools. Based on this analysis, the total amount of weekly physical activity is not associated with school type, suggesting that one type of school’s physical education program does not surpass the others. It could be interpreted that all schools have effective programs, or that there is room for improvement for all. When taking into consideration the state of research about insufficient school physical education programs, it can be inferred that the latter is true and better programs and policies are needed. Effectively designed programs and policies can greatly impact a child’s volume of weekly physical activity. 
