@@ -77,7 +77,7 @@ knitr::include_graphics(path = "image2.png")
 In our study, we aim to examine patterns of adolescent MVPA, including when and how much MVPA they perform, and to explore the association between adolescents' weekly minutes of MVPA and their sex, after adjusting for age and body mass index (BMI), as well as explore the association between adolescent's school type with their exercise patterns. For the purpose of this study, our final sample will be composed of teenagers (13-17 years old) who gave responses for all physical activity and demographic variables. This process and final sample size is explained in the following sections.
 
 ## Statistical Analysis
-### Software Note
+### _Software Note_
 All analysis was conducted with the statistical software R [@R]. The tidyverse package and others contained within the tidyverse package, such as ggplot2, dplyr, tidyr were used to clean, and visualize FLASHE data [@tidyverse], [@ggplot2], [@dplyr], [@tidyr]. Additionally, the here, rio, and janitor packages were used to assist in importing and cleaning data [@here], [@rio], [@janitor]. Also, the ggridges package was used to visualize data in a ridge plot [@ggridges]. The gtsummary package was used to display tables in an easier to read and constant format [@gtsummary].
 
 ### _Demographic Characteristics_
