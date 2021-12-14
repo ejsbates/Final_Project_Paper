@@ -32,7 +32,7 @@ library(knitr)
 \newpage
 
 # Abstract
-Physical activity is beneficial for young people due to myriad benefits associated with enhanced physical and mental health: self-efficacy and mood, fostering normal growth and development, and reducing risk of chronic morbidity. For adolescents, achieving the recommended 60 minutes per day of moderate to vigorous physical activity (MVPA) is often an indicator of academic achievement. Despite these benefits, less than a quarter (24%) of school-aged youth meet recommendations. There are many ways in which a child may meet these recommendations, one of which is through time and resources available in the school setting (e.g., physical education classes, access to school physical activity resources, active transportation to and from school, etc.). However, not all schools provide these resources, and this may differ by the type of school attended (e.g., private, public, home, or other). Thus, patterns of PA may differ based upon these characteristics. Furthermore, there is evidence to suggest that time spent performing MVPA differs by individual characteristics such as body mass index (BMI) and sex (male/female). This study will investigate those patterns of physical activity among adolescents using Family Life, Activity, Sun, Health and Eating (FLASHE) study dataset from the National Cancer Institute. The driving questions of this study are: 1) How do patterns of MVPA for adolescents vary by sex after controlling for age and BMI?, and 2) Does minutes of MVPA performed weekly differ by the type of school attended (private, public, home, or other). 
+Physical activity (PA) is beneficial for young people due to myriad benefits associated with enhanced physical and mental health: self-efficacy and mood, fostering normal growth and development, and reducing risk of chronic morbidity. For adolescents, achieving the recommended 60 minutes per day of moderate to vigorous physical activity (MVPA) is often an indicator of academic achievement. Despite these benefits, less than a quarter (24%) of school-aged youth meet recommendations. There are many ways in which a child may meet these recommendations, one of which is through time and resources available in the school setting (e.g., physical education classes, access to school physical activity resources, active transportation to and from school, etc.). However, not all schools provide these resources, and this may differ by the type of school attended (e.g., private, public, home, or other). Thus, patterns of PA may differ based upon these characteristics. Furthermore, there is evidence to suggest that time spent performing MVPA differs by individual characteristics such as body mass index (BMI) and sex (male/female). This study will investigate those patterns of physical activity among adolescents using Family Life, Activity, Sun, Health and Eating (FLASHE) study dataset from the National Cancer Institute. The driving questions of this study are: 1) How do patterns of MVPA for adolescents vary by sex after controlling for age and BMI?, and 2) Does minutes of MVPA performed weekly differ by the type of school attended (private, public, home, or other). 
 
 \newpage
 
@@ -78,13 +78,13 @@ In our study, we aim to examine patterns of adolescent MVPA, including when and 
 
 ## Statistical Analysis
 ### _Software Note_
-All analysis was conducted with the statistical software R [@R]. The tidyverse package and others contained within the tidyverse package, such as ggplot2, dplyr, tidyr were used to clean, and visualize FLASHE data [@tidyverse], [@ggplot2], [@dplyr], [@tidyr]. Additionally, the here, rio, and janitor packages were used to assist in importing and cleaning data [@here], [@rio], [@janitor]. Also, the ggridges package was used to visualize data in a ridge plot [@ggridges]. The gtsummary package was used to display tables in an easier to read and constant format [@gtsummary].
+All analysis was conducted with the statistical software R [@R]. The tidyverse package and others contained within the tidyverse package, such as ggplot2, dplyr, tidyr were used to clean, and visualize FLASHE data [@tidyverse; @ggplot2; @dplyr; @tidyr]. Additionally, the here, rio, and janitor packages were used to assist in importing and cleaning data [@here; @rio; @janitor]. Also, the ggridges package was used to visualize data in a ridge plot [@ggridges]. The gtsummary package was used to display tables in an easier to read and constant format [@gtsummary].
 
 ### _Demographic Characteristics_
 Descriptive statistics were performed to determine the distribution of study variables among participants and to check for skewness and kurtosis. All analysis was conducted with the statistical software R [@R].
 
 ### _Study Aim One_
-To address Study Aim 1, if there is an association between an adolescent's total MVPA and sex, after adjusting for age and BMI, a multiple regression was conducted. The dependent variable was an adolescent's total MVPA, which was calculated by adding the scores for 'MVPA during the weekday' and 'MVPA during the weekend'. The independent variable in the model was 'sex' (e.g., female and male). The variables included in the regression model that were controlled for were 'age' and 'BMI'. BMI was calculated from participants' self-reported height and weight with the equation: [weight (lb) / height (in) / height (in)] x 703 [@prevention].
+To address Study Aim 1, if there is an association between an adolescent's total MVPA and sex, after adjusting for age and BMI, a multiple regression was conducted. The dependent variable was an adolescent's total MVPA, which was calculated by adding the scores for 'MVPA during the weekday' and 'MVPA during the weekend'. The independent variable in the model was 'sex' (e.g., female and male). The variables included in the regression model that were controlled for were 'age' and 'BMI'. BMI was calculated from participants' self-reported height and weight with the equation: [weight (lb) / height (in) / height (in)] x 703; @prevention].
 
 ### _Study Aim Two_
 To address Study Aim 2, if there is an association between type of school attended and physical activity performed during the week, a one way ANOVA was conducted. The dependent variable was an adolescent's total MVPA, calculated as outlined above. The independent variables were the levels of 'school type' (e.g. public, private, home-school or another school type). For both study aims (1 and 2) figures were created to visualize the data and results.
@@ -128,7 +128,7 @@ pct_pub_school <- pub_school %>%
 
 # Results
 ## Participants
-Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r count` in the final analysis. Participants were evenly distributed by age and sex, with a mean age of `r mean_age`. Adolescents' MVPA varied from as low as `r min_MVPA` to as high as `r max_MVPA`. Average weekly MVPA was `r avg_MVPA`. The majority of participants reported attending a public school `r pct_pub_school`.
+Table 1 displays the results of the descriptive characteristics of this sample. In total, there were `r format(nrow(data), big.mark = ",")` in the final analysis. Participants were evenly distributed by age and sex, with a mean age of `r mean_age` years. Adolescents' MVPA varied from as low as `r round(min_MVPA, 1)` to as high as `r round(max_MVPA, 1)`. Average weekly MVPA was `r avg_MVPA` minutes per day <!-- is that right? -->. The majority of participants reported attending a public school (*n* = `r pct_pub_school`).
 
 ```{r summary-data-table-one}
 # change chr to factors for our demographic vars
@@ -137,12 +137,31 @@ data$tethrac_rc_y <- as.factor(data$tethrac_rc_y) # race
 data$tschltype <- as.factor(data$tschltype) # school type
 data$tage_y <- as.factor(data$tage_y) # age
 
+# data <- data %>% 
+#   mutate(
+#     tsex <- as.factor(tsex), # sex
+#     tethrac_rc_y <- as.factor(tethrac_rc_y), # race
+#     tschltype <- as.factor(tschltype), # school type
+#     tage_y <- as.factor(tage_y)
+#   )
+# 
+# OR
+# 
+# data <- data %>% 
+#   mutate(across(c(tsex, tethrac_rc_y, tschltype, tage_y), as.factor))
+  
+
 # Create df for table of demographic variables
 table_data <- data %>% 
   select(c(13:15, 17))
 
 colnames(table_data) <- c("Sex", "School Type",
                           "Race/Ethnicity", "Age")
+
+# OR
+# 
+# table_data <- data %>% 
+#   select("Sex" = tsex, "School Type" = tschltype, "Race/Ethnicity" = tethrac_rc_y, "Age" = tage_y)
 
 table_data %>% 
   gtsummary::tbl_summary() %>% 
@@ -163,11 +182,17 @@ table_data2 <- summary_table1
 colnames(table_data2) <- c("School Type", "Sex", "Mean Age", "Mean BMI", "Average Weekly Minutes of MVPA", "SD of Average Weekly Minutes of MVPA")
 
 table_data2 %>%
+  ungroup() %>% 
+  select(-`School Type`) %>% 
   kable(caption = "Table 2. Amount Physical Activity by School Type",
         digits = 2,
-        booktabs = TRUE) %>% 
-  kableExtra::column_spec(1, bold = TRUE) %>% 
-  kableExtra::column_spec(1:6, width = "1.8cm")
+        booktabs = TRUE) %>%
+  kableExtra::column_spec(1, bold = TRUE) %>%
+  kableExtra::column_spec(1:5, width = "1.8cm") %>% 
+  kableExtra::pack_rows("Another kind of school", 1, 2) %>%
+  kableExtra::pack_rows("Home-Schooled", 3, 4) %>% 
+  kableExtra::pack_rows("Private school", 5, 6) %>% 
+  kableExtra::pack_rows("Public School", 7, 8) 
 ```
 
 Participants' average MVPA by age, with respect to sex, is displayed in Figure 3. Patterns were observed with decreases in the predicted MVPA as participants got older. Male participants were predicted to obtain a higher average of MVPA than their female counterparts, but not by much more.
@@ -189,14 +214,7 @@ data %>%
        tag = "Figure 3.") +
   theme(legend.title = element_blank()) +
   theme(axis.text.x = element_blank())
-```
 
-## Study Aim One
-Regression results (presented in Table 3) were used to determine if there was a significant relationship with predicted MVPA during the week and sex, after adjusting for age and BMI. When sex was the only predictor in the model, there was no significant difference in the predicted MVPA of participants, _B_ = 8.42, _SE_ = 4.74, _t_(1190) = 1.78, _p_ = .08. Sex alone, explained only 0.26% of the variance in predicted MVPA, _F_(1, 1190) = 3.16, _p_ = .08.
-
-When age and bmi were adjusted for in the regression model, there was a significant difference in the relationship between sex and predicted MVPA during the week. Male adolescents engaged in 10.06 minutes more MVPA during the week than male participants, _SE_ = 3.35, _t_(1185) = -3.00, _p_ < .001.
-
-```{r regression-code, results='hide'}
 # regression without controlled variables of age and bmi (Model 1)
 data_new_names <- rename(data, Sex = tsex,
                          Age = tage_y, BMI = bmi)
@@ -204,6 +222,15 @@ data_new_names <- rename(data, Sex = tsex,
 model1 <- lm(total_pa_wk_min ~ 1 + Sex,
             data = data_new_names)
 summary(model1)
+```
+
+## Study Aim One
+Regression results (presented in Table 3) were used to determine if there was a significant relationship with predicted MVPA during the week and sex, after adjusting for age and BMI. When sex was the only predictor in the model, there was no significant difference in the predicted MVPA of participants, _B_ = `r round(summary(model1)$coefficients[2, 1], 2)`, _SE_ = `r round(summary(model1)$coefficients[2, 2], 2)`, _t_(`r summary(model1)$df[2]`) = `r round(summary(model1)$coefficients[2, 3], 2)`, _p_ = `r round(summary(model1)$coefficients[2, 4], 2)`. Sex alone, explained only `r round(summary(model1)$r.squared*100, 2)`% of the variance in predicted MVPA, _F_(`r round(unname(summary(model1)$fstatistic))[2]`, `r round(unname(summary(model1)$fstatistic))[3]`) = `r round(unname(summary(model1)$fstatistic), 2)[1]`, _p_ = `r round(summary(model1)$coefficients[2, 4], 2)`.
+
+When age and bmi were adjusted for in the regression model, there was a significant difference in the relationship between sex and predicted MVPA during the week. Male adolescents engaged in 10.06 minutes more MVPA during the week than male participants, _SE_ = 3.35, _t_(1185) = -3.00, _p_ < .001.
+
+```{r regression-code, results='hide'}
+
 
 # final regression model with all variables (Model 2)
 model2 <- lm(total_pa_wk_min ~ 1 + Sex + Age + BMI,
